@@ -1,11 +1,12 @@
 <template>
   <div>
     <h1>Liste des Drapeaux</h1>
-    <ul>
-      <li v-for="country in countries" :key="country.name.common">
-        {{ country.name.common }} - <img :src="country.flags.png" alt="Drapeau">
-      </li>
-    </ul>
+    <div class="flag-grid">
+      <div v-for="country in countries" :key="country.name.common" class="flag-item">
+        <img :src="country.flags.png" alt="Drapeau">
+        <div>{{ country.name.common }}</div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -35,5 +36,23 @@ export default {
 </script>
 
 <style>
+.flag-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.flag-item {
+  flex: 1 1 calc(33.33% - 16px);
+  max-width: calc(33.33% - 16px);
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.flag-item img {
+  max-width: 100%;
+  height: auto;
+}
+
 /* Vos styles CSS ici */
 </style>
