@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="container-fluid">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="">
         <RouterLink class="navbar-brand" to="/">Jeu des drapeaux</RouterLink>
