@@ -39,7 +39,6 @@ export default {
 .flag-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
 }
 
 .flag-item {

@@ -1,8 +1,8 @@
 
 <template>
-  <div class="">
+  <div class="container-fluid">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="">
+      <div class="container">
         <RouterLink class="navbar-brand" to="/">Mon Application</RouterLink>
 
         <button
