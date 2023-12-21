@@ -1,9 +1,12 @@
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
+
+import GameFlag from "@/components/GameFlag.vue";
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+    <main>
+        <h1>SCORE : 2</h1>
+        <GameFlag image="https://flagcdn.com/w320/cx.png" name="France" :show-answer="true"/>
+
+    </main>
 </template>
