@@ -1,6 +1,6 @@
 <script setup>
-
 import GameFlag from "@/components/GameFlag.vue";
+import GameInput from "@/components/GameInput.vue";
 </script>
 
 <template>
@@ -8,7 +8,7 @@ import GameFlag from "@/components/GameFlag.vue";
         <h1>SCORE : {{score}}</h1>
          <button v-on:click="getRandomPays">RANDOM PAYS</button>
         <GameFlag v-if="actualPays" :image="actualPays?.image" :name="actualPays?.name" :show-answer="true"/>
-
+        <GameInput @countryWrited="showInput"/>
     </main>
 </template>
 
@@ -57,8 +57,11 @@ export default {
 
             const random = Math.round(Math.random() * this.pays.length)
             this.actualPays = this.pays[random]
-        }
+        },
 
+        showInput() {
+            alert("Insertion du pays")
+        }
     }
 }
 </script>
