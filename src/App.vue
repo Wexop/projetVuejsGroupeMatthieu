@@ -25,24 +25,17 @@
               <RouterLink class="nav-link" to="/paysList">LISTE DES PAYS</RouterLink>
             </li>
           </ul>
-
-          <!-- Barre de recherche -->
-          <form class="d-flex ms-auto" @submit.prevent="searchCountry">
-            <input v-model="searchQuery" class="form-control me-2" type="search" placeholder="Recherche" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Rechercher</button>
-          </form>
-
-          <!-- Afficher les résultats de la recherche -->
-          <div v-if="searchResults.length > 0" class="mt-2">
-            <ul class="list-group">
-              <li class="list-group-item" v-for="country in searchResults" :key="country.id">
-                {{ country.name }}
-              </li>
-            </ul>
-          </div>
         </div>
       </div>
     </nav>
+
+    <!-- Afficher la barre de recherche uniquement sur la page "paysList" -->
+    <div v-if="$route.path === '/paysList'" class="mt-2">
+      <form class="d-flex ms-auto" @submit.prevent="searchCountry">
+        <input v-model="searchQuery" class="form-control me-2" type="search" placeholder="Recherche" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Rechercher</button>
+      </form>
+    </div>
 
     <div class="mt-4">
       <RouterView />
@@ -52,7 +45,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterLink, RouterView, useRoute } from 'vue-router'
 
 const countries = [
   { id: 1, name: 'Pays1' },
@@ -62,6 +55,7 @@ const countries = [
 
 const searchQuery = ref('')
 const searchResults = ref([])
+const $route = useRoute()
 
 const searchCountry = () => {
   // Logique de recherche
