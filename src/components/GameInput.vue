@@ -5,17 +5,13 @@ export default {
     return {
       inputValue: ''
     }
-  },
-  methods: {
-    countryWrited() {
-      this.$emit(this.inputValue)
-    }
   }
+
 }
 </script>
 
 <template>
-    <input type="text" v-model="inputValue">
-    <input type="submit" value="OK">
+    <input type="text" v-model="this.inputValue">
+    <input type="submit" value="OK"  @click="$emit('inputPressed', this.inputValue)">
 </template>
 

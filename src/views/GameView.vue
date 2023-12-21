@@ -5,10 +5,9 @@ import GameInput from "@/components/GameInput.vue";
 
 <template>
     <main>
-        <h1>SCORE : {{score}}</h1>
-         <button v-if="isCorrect" v-on:click="nextFlag">NEXT</button>
-         <button v-on:click="onGetName(actualPays?.name)">GOOD ONE</button>
-         <button v-on:click="onGetName('ruc')">WRONG ONE</button>
+        <h1>SCORE : {{ score }}</h1>
+        <button v-if="isCorrect" v-on:click="nextFlag">NEXT</button>
+        <GameInput v-if="!isCorrect" @inputPressed="inputPressed"/>
         <GameFlag v-if="actualPays" :image="actualPays?.image" :name="actualPays?.name" :show-answer="isCorrect"/>
 
     </main>
@@ -17,8 +16,9 @@ import GameInput from "@/components/GameInput.vue";
 <script>
 import axios from "axios";
 import router from "@/router/index.js";
+
 export default {
-    data()  {
+    data() {
         return {
             actualPays: undefined,
             callEnabled: true,
@@ -34,11 +34,11 @@ export default {
 
     methods: {
 
-        getData: async function( ){
+        getData: async function () {
 
 
             try {
-                if(!this.callEnabled) return
+                if (!this.callEnabled) return
                 const apiURL = "https://restcountries.com/v3.1/all/?fields=name,translations,flags,capitalInfo,postalCode,maps,capital"
                 const response = await axios.get(apiURL)
                 const res = response.data
@@ -53,8 +53,8 @@ export default {
                 console.log(e)
             }
         },
-        getRandomPays: function() {
-            if(this.pays?.length === 0) {
+        getRandomPays: function () {
+            if (this.pays?.length === 0) {
                 this.getData()
                 return
             }
@@ -64,23 +64,22 @@ export default {
         },
         nextFlag: function () {
 
-            this.isCorrect= false
+            this.isCorrect = false
             this.getRandomPays()
         },
         onGetName: function (name) {
-            this.isCorrect = name === this.actualPays?.name
+            this.isCorrect = name.toLowerCase() === this.actualPays?.name?.toLowerCase()
 
-            if(!this.isCorrect) {
-              router.push("/")
-            }
-            else {
+            if (!this.isCorrect) {
+                router.push("/")
+            } else {
                 this.score++
             }
 
-        }
+        },
 
-        showInput() {
-            alert("Insertion du pays")
+        inputPressed(name) {
+            this.onGetName(name)
         }
     }
 }
