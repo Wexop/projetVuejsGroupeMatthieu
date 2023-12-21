@@ -5,7 +5,7 @@ import GameFlag from "@/components/GameFlag.vue";
 
 <template>
     <main>
-        <h1>SCORE : 2</h1>
+        <h1>SCORE : {{score}}</h1>
          <button v-on:click="getRandomPays">RANDOM PAYS</button>
         <GameFlag v-if="actualPays" :image="actualPays?.image" :name="actualPays?.name" :show-answer="true"/>
 
@@ -19,7 +19,8 @@ export default {
         return {
             actualPays: undefined,
             callEnabled: true,
-            pays: []
+            pays: [],
+            score: 0,
         }
     },
     created() {
@@ -55,8 +56,6 @@ export default {
             }
 
             const random = Math.round(Math.random() * this.pays.length)
-            
-
             this.actualPays = this.pays[random]
         }
 
