@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div  >
     <h1>Liste des Drapeaux</h1>
     <div class="flag-grid">
       <div v-for="country in countries" :key="country.name.common" class="flag-item">
@@ -53,6 +53,7 @@ export default {
   max-width: 100%;
   height: auto;
 }
+
 
 /* Vos styles CSS ici */
 </style>

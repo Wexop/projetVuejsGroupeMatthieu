@@ -1,8 +1,8 @@
 
 <template>
-  <div>
+  <div class="">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container">
+      <div class="">
         <RouterLink class="navbar-brand" to="/">Mon Application</RouterLink>
 
         <button
@@ -30,7 +30,7 @@
       </div>
     </nav>
 
-    <div class="container mt-4">
+    <div class="">
       <RouterView />
     </div>
   </div>
@@ -42,5 +42,6 @@ import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <style>
+
 /* Ajoutez ici vos styles personnalisés si nécessaire */
 </style>
