@@ -5,11 +5,11 @@ import GameFlag from "@/components/GameFlag.vue";
 
 <template>
     <main>
-        <h1>SCORE : {{score}}</h1>
-         <button v-if="isCorrect" v-on:click="nextFlag">NEXT</button>
-         <button v-on:click="onGetName(actualPays?.name)">GOOD ONE</button>
-         <button v-on:click="onGetName('ruc')">WRONG ONE</button>
-        <GameFlag v-if="actualPays" :image="actualPays?.image" :name="actualPays?.name" :show-answer="isCorrect"/>
+        <h1>SCORE : {{ score }}</h1>
+        <button v-if="isCorrect" v-on:click="nextFlag">NEXT</button>
+        <button v-on:click="onGetName(actualPays?.name)">GOOD ONE</button>
+        <button v-on:click="onGetName('ruc')">WRONG ONE</button>
+        <GameFlag v-if="actualPays" :image="actualPays?.image" :name="actualPays?.name" :show-answer="isCorrect" />
 
     </main>
 </template>
@@ -18,7 +18,7 @@ import GameFlag from "@/components/GameFlag.vue";
 import axios from "axios";
 import router from "@/router/index.js";
 export default {
-    data()  {
+    data() {
         return {
             actualPays: undefined,
             callEnabled: true,
@@ -34,17 +34,17 @@ export default {
 
     methods: {
 
-        getData: async function( ){
+        getData: async function () {
 
 
             try {
-                if(!this.callEnabled) return
+                if (!this.callEnabled) return
                 const apiURL = "https://restcountries.com/v3.1/all/?fields=name,translations,flags,capitalInfo,postalCode,maps,capital"
                 const response = await axios.get(apiURL)
                 const res = response.data
                 this.pays = []
                 res.forEach(pays => {
-                    this.pays.push({image: pays?.flags?.png, name: pays?.translations?.fra.common})
+                    this.pays.push({ image: pays?.flags?.png, name: pays?.translations?.fra.common })
                 })
 
                 this.callEnabled = false
@@ -53,8 +53,8 @@ export default {
                 console.log(e)
             }
         },
-        getRandomPays: function() {
-            if(this.pays?.length === 0) {
+        getRandomPays: function () {
+            if (this.pays?.length === 0) {
                 this.getData()
                 return
             }
@@ -64,14 +64,14 @@ export default {
         },
         nextFlag: function () {
 
-            this.isCorrect= false
+            this.isCorrect = false
             this.getRandomPays()
         },
         onGetName: function (name) {
             this.isCorrect = name === this.actualPays?.name
 
-            if(!this.isCorrect) {
-              router.push("/")
+            if (!this.isCorrect) {
+                router.push({ name: 'gameOver', params: { score: this.score } });
             }
             else {
                 this.score++

@@ -19,6 +19,11 @@ const router = createRouter({
       path: '/paysList',
       name: 'paysList',
       component: () => import('../views/PaysInformations.vue')
+    },
+    {
+      path: '/gameOver',
+      name: 'gameOver',
+      component: () => import('../views/GOView.vue')
     }
   ]
 })
