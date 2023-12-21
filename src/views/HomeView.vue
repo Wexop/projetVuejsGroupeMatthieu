@@ -1,9 +1,11 @@
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
+
+import {RouterLink} from "vue-router";
 </script>
 
 <template>
   <main>
-    <TheWelcome />
+      <RouterLink to="/game">JEU</RouterLink>
+      <RouterLink to="/paysList">LISTE DES PAYS</RouterLink>
   </main>
 </template>
