@@ -16,7 +16,7 @@ defineProps({
 </script>
 
 <template>
-    <img :src="this.image" alt="gameFlag" width="auto">
-    <h3 :style="this.showAnswer ? 'display:block' : 'display:none'">{{this.name}}</h3>
+    <img :src="image" alt="gameFlag" width="auto">
+    <h3 :style="showAnswer ? 'display:block' : 'display:none'">{{name}}</h3>
 </template>
 
