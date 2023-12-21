@@ -39,12 +39,12 @@ export default {
 .flag-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 2rem;
 }
 
 .flag-item {
-  flex: 1 1 calc(33.33% - 16px);
-  max-width: calc(33.33% - 16px);
+  flex: 1 1 calc(33.33% - 1rem);
+  max-width: calc(33.33% - 1rem);
   text-align: center;
   margin-bottom: 16px;
 }
