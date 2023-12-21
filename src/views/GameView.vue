@@ -6,14 +6,17 @@ import GameInput from "@/components/GameInput.vue";
 <template>
     <main>
         <h1>SCORE : {{score}}</h1>
-         <button v-on:click="getRandomPays">RANDOM PAYS</button>
-        <GameFlag v-if="actualPays" :image="actualPays?.image" :name="actualPays?.name" :show-answer="true"/>
-        <GameInput @countryWrited="showInput"/>
+         <button v-if="isCorrect" v-on:click="nextFlag">NEXT</button>
+         <button v-on:click="onGetName(actualPays?.name)">GOOD ONE</button>
+         <button v-on:click="onGetName('ruc')">WRONG ONE</button>
+        <GameFlag v-if="actualPays" :image="actualPays?.image" :name="actualPays?.name" :show-answer="isCorrect"/>
+
     </main>
 </template>
 
 <script>
 import axios from "axios";
+import router from "@/router/index.js";
 export default {
     data()  {
         return {
@@ -21,6 +24,7 @@ export default {
             callEnabled: true,
             pays: [],
             score: 0,
+            isCorrect: false
         }
     },
     created() {
@@ -58,6 +62,22 @@ export default {
             const random = Math.round(Math.random() * this.pays.length)
             this.actualPays = this.pays[random]
         },
+        nextFlag: function () {
+
+            this.isCorrect= false
+            this.getRandomPays()
+        },
+        onGetName: function (name) {
+            this.isCorrect = name === this.actualPays?.name
+
+            if(!this.isCorrect) {
+              router.push("/")
+            }
+            else {
+                this.score++
+            }
+
+        }
 
         showInput() {
             alert("Insertion du pays")
