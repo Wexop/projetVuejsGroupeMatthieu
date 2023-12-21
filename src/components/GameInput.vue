@@ -11,7 +11,7 @@ export default {
 </script>
 
 <template>
-    <input type="text" v-model="this.inputValue">
+    <input class="input" type="text" v-model="this.inputValue" placeholder="Nom du pays">
     <input type="submit" value="OK"  @click="$emit('inputPressed', this.inputValue)">
 </template>
 
