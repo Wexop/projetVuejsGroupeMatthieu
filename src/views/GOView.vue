@@ -1,12 +1,18 @@
 <script>
+import GameFlag from "@/components/GameFlag.vue";
+
 export default {
+    components: {GameFlag},
   data() {
     return {
-      score: Number(localStorage.getItem('score')) || 0
+      score: Number(localStorage.getItem('score')) || 0,
+      paysFailedName: localStorage.getItem('paysFailedName') || "",
+      paysFailedImage: localStorage.getItem('paysFailedImg') || ""
     };
   },
-  beforeUnmount() {
+    beforeUnmount() {
     localStorage.removeItem('score');
+    localStorage.removeItem('paysFailed');
   }
 }
 </script>
@@ -14,7 +20,9 @@ export default {
     <div class="game-over-container">
         <div class="game-over-box">
             <h1>GAME OVER</h1>
-            <p>SCORE : {{ score }}</p>
+            <h2>SCORE : {{ score }}</h2>
+            <p>LE PAYS ETAIT :</p>
+            <GameFlag show-answer="{{true}}" :name="paysFailedName" :image="paysFailedImage" />
             <div class="buttons">
                 <RouterLink to="/game">RECOMMENCER</RouterLink>
                 <RouterLink to="/">ACCUEIL</RouterLink>
@@ -22,13 +30,12 @@ export default {
         </div>
     </div>
 </template>
-  
+
 <style scoped>
 .game-over-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
 }
 
 .game-over-box {
@@ -48,4 +55,3 @@ button {
     cursor: pointer;
 }
 </style>
-  

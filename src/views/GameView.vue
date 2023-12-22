@@ -85,6 +85,8 @@ export default {
 
             if (!this.isCorrect) {
                 localStorage.setItem('score', this.score);
+                localStorage.setItem('paysFailedName', this.actualPays.name);
+                localStorage.setItem('paysFailedImg', this.actualPays.image);
                 router.push({ name: 'gameOver' });
             } else {
                 this.score++
