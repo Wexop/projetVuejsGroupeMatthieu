@@ -7,9 +7,8 @@ import GameInput from "@/components/GameInput.vue";
     <main >
         <h1>SCORE : {{ score }}</h1>
         <button v-if="isCorrect" v-on:click="nextFlag">NEXT</button>
-        <GameInput v-if="!isCorrect" @inputPressed="inputPressed"/>
-        <GameFlag v-if="actualPays" :image="actualPays?.image" :name="actualPays?.name" :show-answer="isCorrect"/>
-
+        <GameInput v-if="!isCorrect" @inputPressed="inputPressed" />
+        <GameFlag v-if="actualPays" :image="actualPays?.image" :name="actualPays?.name" :show-answer="isCorrect" />
     </main>
 </template>
 
@@ -44,7 +43,7 @@ export default {
                 const res = response.data
                 this.pays = []
                 res.forEach(pays => {
-                    this.pays.push({image: pays?.flags?.png, name: pays?.translations?.fra.common})
+                    this.pays.push({ image: pays?.flags?.png, name: pays?.translations?.fra.common })
                 })
 
                 this.callEnabled = false
@@ -71,7 +70,7 @@ export default {
             this.isCorrect = name.toLowerCase() === this.actualPays?.name?.toLowerCase()
 
             if (!this.isCorrect) {
-                router.push("/")
+                router.push({ name: 'gameOver', params: { score: this.score } })
             } else {
                 this.score++
             }
