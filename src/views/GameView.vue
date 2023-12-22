@@ -10,7 +10,7 @@ import GameSuggestion from "@/components/GameSuggestion.vue";
         <button v-if="isCorrect" v-on:click="nextFlag">NEXT</button>
         <GameInput v-if="!isCorrect" @inputPressed="inputPressed" @inputChanged="inputChanged"/>
         <GameFlag v-if="actualPays" :image="actualPays?.image" :name="actualPays?.name" :show-answer="isCorrect"/>
-        <GameSuggestion v-if="paysSuggestion.length > 0" :pays="paysSuggestion"/>
+        <GameSuggestion v-if="paysSuggestion.length > 0 && name" :pays="paysSuggestion"/>
     </main>
 </template>
 
@@ -26,7 +26,8 @@ export default {
             pays: [],
             score: 0,
             isCorrect: false,
-            paysSuggestion: []
+            paysSuggestion: [],
+            name: ""
         }
     },
     created() {
@@ -88,6 +89,7 @@ export default {
         },
 
         inputChanged(name) {
+            this.name = name
             this.paysSuggestion = this.pays.filter(a => this.removeAccents(a.name).includes(this.removeAccents(name))).slice(0, 4)
         }
     }
