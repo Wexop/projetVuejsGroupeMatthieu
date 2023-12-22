@@ -17,6 +17,6 @@ defineProps({
 
 <template>
     <img :src="image" alt="gameFlag" width="auto">
-    <h3 :style="showAnswer ? 'display:block' : 'display:none'">{{name}}</h3>
+    <h3 v-if="showAnswer">{{name}}</h3>
 </template>
 
