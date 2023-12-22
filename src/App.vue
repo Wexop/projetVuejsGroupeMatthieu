@@ -7,7 +7,9 @@
         </nav>
     </header>
 
-    <RouterView/>
+    <div class="align-content-center align-items-center mx-auto">
+        <RouterView/>
+    </div>
 </template>
 
 <script setup>
