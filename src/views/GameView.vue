@@ -1,22 +1,21 @@
 <script setup>
-
 import GameFlag from "@/components/GameFlag.vue";
+import GameInput from "@/components/GameInput.vue";
 </script>
 
 <template>
     <main>
         <h1>SCORE : {{ score }}</h1>
         <button v-if="isCorrect" v-on:click="nextFlag">NEXT</button>
-        <button v-on:click="onGetName(actualPays?.name)">GOOD ONE</button>
-        <button v-on:click="onGetName('ruc')">WRONG ONE</button>
+        <GameInput v-if="!isCorrect" @inputPressed="inputPressed" />
         <GameFlag v-if="actualPays" :image="actualPays?.image" :name="actualPays?.name" :show-answer="isCorrect" />
-
     </main>
 </template>
 
 <script>
 import axios from "axios";
 import router from "@/router/index.js";
+
 export default {
     data() {
         return {
@@ -68,17 +67,19 @@ export default {
             this.getRandomPays()
         },
         onGetName: function (name) {
-            this.isCorrect = name === this.actualPays?.name
+            this.isCorrect = name.toLowerCase() === this.actualPays?.name?.toLowerCase()
 
             if (!this.isCorrect) {
-                router.push({ name: 'gameOver', params: { score: this.score } });
-            }
-            else {
+                router.push({ name: 'gameOver', params: { score: this.score } })
+            } else {
                 this.score++
             }
 
-        }
+        },
 
+        inputPressed(name) {
+            this.onGetName(name)
+        }
     }
 }
 </script>
