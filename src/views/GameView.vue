@@ -4,7 +4,7 @@ import GameInput from "@/components/GameInput.vue";
 </script>
 
 <template>
-    <main>
+    <main >
         <h1>SCORE : {{ score }}</h1>
         <button v-if="isCorrect" v-on:click="nextFlag">NEXT</button>
         <GameInput v-if="!isCorrect" @inputPressed="inputPressed"/>
