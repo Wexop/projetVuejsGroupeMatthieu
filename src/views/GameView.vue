@@ -1,6 +1,5 @@
 <script setup>
 import GameFlag from "@/components/GameFlag.vue";
-import GameInput from "@/components/GameInput.vue";
 import GameSuggestion from "@/components/GameSuggestion.vue";
 </script>
 
@@ -85,7 +84,8 @@ export default {
             this.isCorrect = this.removeAccents(name) === this.removeAccents(this.actualPays?.name)
 
             if (!this.isCorrect) {
-                router.push({name: 'gameOver', params: {score: this.score}})
+                localStorage.setItem('score', this.score);
+                router.push({ name: 'gameOver' });
             } else {
                 this.score++
             }

@@ -22,7 +22,8 @@ const router = createRouter({
     {
       path: '/gameOver',
       name: 'gameOver',
-      component: () => import('../views/GOView.vue')
+      component: () => import('../views/GOView.vue'),
+      props: true
     }
   ]
 })

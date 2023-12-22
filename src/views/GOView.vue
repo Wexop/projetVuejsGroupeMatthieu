@@ -1,11 +1,20 @@
-<script setup>
-import router from "@/router/index.js";
+<script>
+export default {
+  data() {
+    return {
+      score: Number(localStorage.getItem('score')) || 0
+    };
+  },
+  beforeUnmount() {
+    localStorage.removeItem('score');
+  }
+}
 </script>
 <template>
     <div class="game-over-container">
         <div class="game-over-box">
             <h1>GAME OVER</h1>
-            <p>SCORE : {{ $route.params.score }}</p>
+            <p>SCORE : {{ score }}</p>
             <div class="buttons">
                 <RouterLink to="/game">RECOMMENCER</RouterLink>
                 <RouterLink to="/">ACCUEIL</RouterLink>
