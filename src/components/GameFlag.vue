@@ -16,7 +16,9 @@ defineProps({
 </script>
 
 <template>
-    <img :src="image" alt="gameFlag" width="auto">
-    <h3 v-if="showAnswer">{{name}}</h3>
+    <div style="display: flex;flex-direction: column;align-items: center">
+        <img style="border: 2px solid black" class="mb-4" :src="image" alt="gameFlag" width="auto">
+        <h3 v-if="showAnswer">{{name}}</h3>
+    </div>
 </template>
 

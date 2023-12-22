@@ -7,10 +7,17 @@ import GameSuggestion from "@/components/GameSuggestion.vue";
 <template>
     <main>
         <h1>SCORE : {{ score }}</h1>
-        <button v-if="isCorrect" v-on:click="nextFlag">NEXT</button>
-        <GameInput v-if="!isCorrect" @inputPressed="inputPressed" @inputChanged="inputChanged"/>
-        <GameFlag v-if="actualPays" :image="actualPays?.image" :name="actualPays?.name" :show-answer="isCorrect"/>
-        <GameSuggestion v-if="paysSuggestion.length > 0 && name" :pays="paysSuggestion"/>
+        <div style="display: flex; flex-direction: row; align-items: center;width: 40vw; justify-content: space-between">
+            <button v-if="isCorrect" v-on:click="nextFlag">SUIVANT</button>
+            <div v-if="!isCorrect">
+                <input class="input" type="text" v-model="name" placeholder="Nom du pays" @keyup="inputChanged(name)">
+                <input type="submit" value="OK" @click="onGetName(name)">
+                <GameSuggestion @pressed="inputChanged" v-if="paysSuggestion.length > 0 && name"
+                                :pays="paysSuggestion"/>
+            </div>
+            <GameFlag v-if="actualPays" :image="actualPays?.image" :name="actualPays?.name" :show-answer="isCorrect"/>
+        </div>
+
     </main>
 </template>
 
@@ -68,6 +75,7 @@ export default {
         nextFlag: function () {
 
             this.isCorrect = false
+            this.name = ""
             this.getRandomPays()
         },
         removeAccents(str) {
@@ -89,8 +97,9 @@ export default {
         },
 
         inputChanged(name) {
+
             this.name = name
-            this.paysSuggestion = this.pays.filter(a => this.removeAccents(a.name).includes(this.removeAccents(name))).slice(0, 4)
+            this.paysSuggestion = this.pays.filter(a => this.removeAccents(a.name).includes(this.removeAccents(name))).slice(0, 5)
         }
     }
 }
