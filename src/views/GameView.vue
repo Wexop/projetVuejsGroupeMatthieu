@@ -4,7 +4,7 @@ import GameSuggestion from "@/components/GameSuggestion.vue";
 </script>
 
 <template>
-    <main>
+  <main style="display: flex; flex-direction: column; align-items: center; justify-content: space-between; min-width: 100vw; gap:2rem">
         <h1>SCORE : {{ score }}</h1>
         <div style="display: flex; flex-direction: row; align-items: center;width: 40vw; justify-content: space-between">
             <button v-if="isCorrect" v-on:click="nextFlag">SUIVANT</button>
@@ -16,8 +16,9 @@ import GameSuggestion from "@/components/GameSuggestion.vue";
             </div>
             <GameFlag v-if="actualPays" :image="actualPays?.image" :name="actualPays?.name" :show-answer="isCorrect"/>
         </div>
+  </main>
 
-    </main>
+
 </template>
 
 <script>

@@ -17,6 +17,7 @@ export default {
 }
 </script>
 <template>
+  <main style="display: flex; flex-direction: column; align-items: center; justify-content: space-between; min-width: 100vw; gap:2rem">
     <div class="game-over-container">
         <div class="game-over-box">
             <h1>GAME OVER</h1>
@@ -29,6 +30,7 @@ export default {
             </div>
         </div>
     </div>
+  </main>
 </template>
 
 <style scoped>

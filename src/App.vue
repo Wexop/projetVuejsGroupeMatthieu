@@ -18,7 +18,7 @@
         </nav>
     </header>
 
-    <div class="align-content-center align-items-center mx-auto">
+    <div class="body">
         <RouterView/>
     </div>
 </template>
@@ -28,5 +28,9 @@ import {RouterLink, RouterView} from 'vue-router'
 </script>
 
 <style>
-
+.body{
+  justify-content: center;
+  align-items: center;
+  min-width: 100%;
+}
 </style>

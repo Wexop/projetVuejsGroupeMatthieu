@@ -20,6 +20,11 @@ const router = createRouter({
       component: () => import('../views/PaysInformations.vue')
     },
     {
+      path: '/paysList/:id',
+      name: 'Detail',
+      component: () => import('../views/Detail.vue')
+    },
+    {
       path: '/gameOver',
       name: 'gameOver',
       component: () => import('../views/GOView.vue'),
